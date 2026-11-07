@@ -41,7 +41,7 @@ export function orderView(o: OrderRow) {
   });
   const lastDue = Math.max(start + 24 * H, ...services.map((s) => s.due));
   const firstDue = Math.min(...services.map((s) => s.due));
-  const stages = [
+  const raw = [
     { key: "placed", at: start, done: true },
     { key: "kyc", at: start + 60_000, done: now >= start + 60_000 },
     { key: "scheduled", at: start + 2 * H, done: !!slot || now >= start + 2 * H },
@@ -49,6 +49,12 @@ export function orderView(o: OrderRow) {
     { key: "installed", at: firstDue, done: now >= firstDue },
     { key: "active", at: lastDue, done: now >= lastDue },
   ];
+  // Stages happen in order: a next-day SIM must not show "technician on the way" before KYC is done.
+  const stages = raw.reduce<typeof raw>((acc, s) => {
+    const prev = acc[acc.length - 1];
+    acc.push(prev ? { ...s, at: Math.max(s.at, prev.at), done: s.done && prev.done } : s);
+    return acc;
+  }, []);
   const current = [...stages].reverse().find((s) => s.done)?.key ?? "placed";
   return {
     id: o.id,

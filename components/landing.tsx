@@ -20,6 +20,8 @@ export function Landing() {
 
   const start = (persona?: string) => {
     reset();
+    // Also hand over via sessionStorage: the advisor can mount before the URL carries ?persona.
+    if (persona) sessionStorage.setItem("accel-persona", persona);
     router.push(persona ? `/advisor?persona=${persona}` : "/advisor");
   };
 

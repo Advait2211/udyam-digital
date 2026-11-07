@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Udyam Digital demo stage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Mukta:wght@500;700;800&display=block" rel="stylesheet" />
+<style>
+  :root {
+    --brand: #e5232b; --brand-dark: #b3141b; --saffron: #ffb020; --mint: #0e9f6e;
+    --ink: #120d0b; --ink-2: #1f1a17; --cream: #fff8f1;
+    --ease: cubic-bezier(.22, 1, .36, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--ink); }
+  body { font-family: "Plus Jakarta Sans", "Mukta", -apple-system, system-ui, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+  .deva { font-family: "Mukta", "Plus Jakarta Sans", sans-serif; }
+
+  /* Backdrop: charcoal with slow-moving brand glows and a faint dot grid */
+  #bg { position: fixed; inset: 0; overflow: hidden; }
+  #bg::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(ellipse at 40% 50%, #000 30%, transparent 75%); }
+  .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55; will-change: transform; }
+  .g1 { width: 720px; height: 720px; left: -120px; top: 260px; background: radial-gradient(circle, rgba(229,35,43,.85), transparent 65%); transform: translate(40px, -30px); }
+  .g2 { width: 620px; height: 620px; right: -160px; top: -220px; background: radial-gradient(circle, rgba(255,176,32,.45), transparent 65%); }
+  .g3 { width: 520px; height: 520px; right: 180px; bottom: -300px; background: radial-gradient(circle, rgba(229,35,43,.45), transparent 65%); }
+
+  /* Phone */
+  #phone { position: fixed; left: 200px; top: 34px; width: 414px; height: 868px; padding: 12px; border-radius: 58px;
+    background: linear-gradient(145deg, #2a2320, #0b0807 40%, #1a1412); box-shadow: 0 0 0 1.5px rgba(255,255,255,.08) inset, 0 40px 120px rgba(0,0,0,.65), 0 0 120px rgba(229,35,43,.18);
+    transition: opacity .6s var(--ease), transform .8s var(--ease); }
+  #phone .screen { width: 390px; height: 844px; border-radius: 46px; overflow: hidden; background: var(--cream); position: relative; }
+  #phone iframe { width: 390px; height: 804px; border: 0; display: block; }
+  #phone .status { height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; background: #fff8f1; color: #1f1a17; font-size: 15px; font-weight: 700; position: relative; }
+  #phone .status::before { content: ""; position: absolute; left: 50%; top: 9px; width: 96px; height: 27px; margin-left: -48px; border-radius: 20px; background: #000; }
+  #phone .status svg { height: 13px; }
+  #phone::after { content: ""; position: absolute; right: -4px; top: 210px; width: 4px; height: 90px; border-radius: 0 4px 4px 0; background: #2a2320; }
+
+  /* Caption column (phone mode) */
+  #cap { pointer-events: none; position: fixed; left: 720px; right: 96px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; transition: opacity .5s var(--ease), transform .7s var(--ease); }
+  .brandrow { position: absolute; top: 46px; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 19px; letter-spacing: -.01em; }
+  .logo i { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--brand); font-style: normal; box-shadow: 0 8px 24px rgba(229,35,43,.45); position: relative; }
+  .logo i::after { content: ""; position: absolute; right: -3px; top: -3px; width: 11px; height: 11px; border-radius: 50%; background: var(--saffron); border: 2px solid var(--ink); }
+  .logo span { color: rgba(255,255,255,.5); font-weight: 600; }
+  .event { font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+
+  .chip { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 8px 16px 8px 8px; border-radius: 999px; background: rgba(229,35,43,.16); border: 1px solid rgba(229,35,43,.4); font-size: 15px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #ffb3a8; }
+  .chip b { display: grid; place-items: center; min-width: 30px; height: 30px; padding: 0 8px; border-radius: 999px; background: var(--brand); color: #fff; font-size: 14px; letter-spacing: 0; }
+  #title { margin-top: 26px; font-size: 58px; line-height: 1.06; font-weight: 800; letter-spacing: -.03em; text-wrap: balance; }
+  #title em { font-style: normal; background: linear-gradient(90deg, #ff5a4f, var(--saffron)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #sub { margin-top: 22px; font-size: 25px; line-height: 1.45; font-weight: 500; color: rgba(255,255,255,.66); max-width: 760px; text-wrap: pretty; }
+  .swap-out { animation: out .32s var(--ease) forwards; }
+  .swap-in { animation: in .7s var(--ease) both; }
+  @keyframes out { to { opacity: 0; transform: translateY(-14px); filter: blur(6px); } }
+  @keyframes in { from { opacity: 0; transform: translateY(22px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+
+  .rail { position: absolute; left: 0; right: 0; bottom: 52px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .rail div { font-size: 13.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.32); transition: color .5s; }
+  .rail div::before { content: ""; display: block; height: 4px; border-radius: 4px; margin-bottom: 12px; background: rgba(255,255,255,.12); transition: background .5s, box-shadow .5s; }
+  .rail .done { color: rgba(255,255,255,.6); }
+  .rail .done::before { background: rgba(255,255,255,.55); }
+  .rail .on { color: #fff; }
+  .rail .on::before { background: linear-gradient(90deg, var(--brand), var(--saffron)); box-shadow: 0 0 18px rgba(229,35,43,.7); }
+  .live { position: absolute; left: 0; bottom: 18px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.35); display: flex; align-items: center; gap: 8px; }
+  .live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 10px var(--mint); }
+
+  /* Desktop window (partner console) */
+  #desk { position: fixed; left: 112px; top: 22px; width: 1440px; height: 806px; border-radius: 18px; overflow: hidden; background: #fff;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 40px 120px rgba(0,0,0,.6); opacity: 0; transform: translateY(40px) scale(.96); pointer-events: none; transition: opacity .7s var(--ease), transform .9s var(--ease); }
+  #desk .bar { height: 36px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: #f1ebe5; border-bottom: 1px solid #e6dcd2; }
+  #desk .bar i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+  #desk .bar i:nth-child(2) { background: #febc2e; } #desk .bar i:nth-child(3) { background: #28c840; }
+  #desk .bar span { margin-left: 18px; padding: 4px 14px; border-radius: 8px; background: #fff; color: #6b625c; font-size: 13px; font-weight: 600; }
+  #desk iframe { width: 1440px; height: 770px; border: 0; display: block; }
+  #deskcap { pointer-events: none; position: fixed; left: 112px; right: 112px; top: 846px; height: 74px; display: flex; align-items: center; gap: 22px; opacity: 0; transition: opacity .6s var(--ease); }
+  #deskcap .t { font-size: 30px; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; }
+  #deskcap .s { font-size: 19px; font-weight: 500; color: rgba(255,255,255,.62); line-height: 1.35; }
+  body.desk #phone { opacity: 0; transform: translateX(-80px) scale(.92); }
+  body.desk #cap { opacity: 0; transform: translateX(60px); }
+  body.desk #desk { opacity: 1; transform: none; pointer-events: auto; }
+  body.desk #deskcap { opacity: 1; }
+
+  /* Full-screen cards (intro / close) */
+  #card { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; justify-content: center; padding: 0 140px; background: radial-gradient(ellipse at 30% 60%, rgba(229,35,43,.35), transparent 60%), rgba(18,13,11,.94); backdrop-filter: blur(24px); opacity: 0; pointer-events: none; transition: opacity .8s var(--ease); }
+  #card.show { opacity: 1; }
+  #card .kick { font-size: 18px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #ffb3a8; }
+  #card h1 { margin-top: 26px; font-size: 104px; line-height: 1; font-weight: 800; letter-spacing: -.045em; max-width: 1300px; text-wrap: balance; }
+  #card h1 em { font-style: normal; background: linear-gradient(90deg, #ff5a4f, var(--saffron)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  #card p { margin-top: 30px; font-size: 32px; line-height: 1.4; font-weight: 500; color: rgba(255,255,255,.7); max-width: 1150px; }
+  #card .stats { margin-top: 56px; display: flex; gap: 22px; }
+  #card .stat { min-width: 300px; padding: 24px 28px; border-radius: 26px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+  #card .stat b { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.02em; }
+  #card .stat span { display: block; margin-top: 6px; font-size: 18px; font-weight: 600; color: rgba(255,255,255,.55); }
+  #card .foot { position: absolute; left: 140px; bottom: 60px; font-size: 19px; font-weight: 700; color: rgba(255,255,255,.45); }
+  #card.show .kick, #card.show h1, #card.show p, #card.show .stat, #card.show .foot { animation: in .9s var(--ease) both; }
+  #card.show h1 { animation-delay: .12s; } #card.show p { animation-delay: .24s; }
+  #card.show .stat:nth-child(1) { animation-delay: .4s; } #card.show .stat:nth-child(2) { animation-delay: .5s; } #card.show .stat:nth-child(3) { animation-delay: .6s; }
+  #card.show .foot { animation-delay: .7s; }
+
+  /* Tap ripple */
+  .tap { position: fixed; z-index: 30; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; pointer-events: none; }
+  .tap::before, .tap::after { content: ""; position: absolute; inset: 0; border-radius: 50%; }
+  .tap::before { background: rgba(229,35,43,.32); border: 3px solid rgba(255,255,255,.95); box-shadow: 0 6px 24px rgba(0,0,0,.35); animation: press .9s var(--ease) forwards; }
+  .tap::after { border: 3px solid rgba(229,35,43,.8); animation: ring .9s var(--ease) forwards; }
+  @keyframes press { 0% { transform: scale(1.5); opacity: 0; } 25% { transform: scale(.8); opacity: 1; } 70% { opacity: 1; } 100% { transform: scale(.8); opacity: 0; } }
+  @keyframes ring { 0%, 25% { transform: scale(.6); opacity: 0; } 35% { opacity: 1; } 100% { transform: scale(2.1); opacity: 0; } }
+</style>
+</head>
+<body>
+  <div id="bg"><div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div></div>
+
+  <div id="phone"><div class="screen"><div class="status"><span>9:41</span><span><svg viewBox="0 0 64 26" fill="#1f1a17"><rect x="0" y="16" width="8" height="10" rx="2"/><rect x="12" y="11" width="8" height="15" rx="2"/><rect x="24" y="6" width="8" height="20" rx="2"/><rect x="36" y="1" width="8" height="25" rx="2" opacity=".35"/><rect x="50" y="5" width="13" height="17" rx="4" fill="none" stroke="#1f1a17" stroke-width="2.5"/><rect x="53" y="8" width="7" height="11" rx="2"/></svg></span></div><iframe id="app" title="Udyam Digital app (phone)"></iframe></div></div>
+
+  <section id="cap">
+    <div class="brandrow">
+      <div class="logo"><i>A</i> Udyam Digital <span>· Accel Business</span></div>
+      <div class="event">YTL Hackathon 2026 · Track A</div>
+    </div>
+    <div id="capbody">
+      <div class="chip" id="chip"><b id="chipn">1</b><span id="chipl"></span></div>
+      <h2 id="title"></h2>
+      <p id="sub"></p>
+    </div>
+    <div class="rail" id="rail">
+      <div>Advisor</div><div>Quote</div><div>Smart KYC</div><div>Tracker</div><div>WhatsApp</div><div>Partners</div>
+    </div>
+    <div class="live">Recorded live from the working prototype · no mock-ups</div>
+  </section>
+
+  <div id="desk"><div class="bar"><i></i><i></i><i></i><span id="url">accel.business/partner</span></div><iframe id="deskapp" title="Udyam Digital app (desktop)"></iframe></div>
+  <div id="deskcap"><div class="chip"><b id="dchipn">6</b><span id="dchipl"></span></div><div><div class="t" id="dtitle"></div><div class="s" id="dsub"></div></div></div>
+
+  <div id="card"></div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const deva = (s) => s.replace(/([ऀ-ॿ][ऀ-ॿ\s]*[ऀ-ॿ]|[ऀ-ॿ])/g, '<span class="deva">$1</span>');
+
+  window.stage = {
+    /** Swap the caption with a soft blur-fade. rail = index (0-5) of the current chapter, or -1. */
+    async caption({ n, label, title, sub, rail = -1 }) {
+      const body = $("capbody");
+      if (body.dataset.ready) { body.className = "swap-out"; await wait(300); }
+      $("chipn").textContent = n; $("chipl").textContent = label;
+      $("title").innerHTML = deva(title); $("sub").innerHTML = deva(sub || "");
+      $("dchipn").textContent = n; $("dchipl").textContent = label;
+      $("dtitle").innerHTML = deva(title); $("dsub").innerHTML = deva(sub || "");
+      [...$("rail").children].forEach((el, i) => { el.className = i < rail ? "done" : i === rail ? "on" : ""; });
+      body.className = ""; void body.offsetWidth; body.className = "swap-in"; body.dataset.ready = "1";
+      const dc = $("deskcap"); dc.style.transition = "none"; dc.style.opacity = "0"; void dc.offsetWidth; dc.style.transition = ""; dc.style.opacity = "";
+    },
+    mode(m) { document.body.classList.toggle("desk", m === "desk"); },
+    card({ kick, title, sub, stats = [], foot = "" }) {
+      const c = $("card");
+      c.innerHTML = `<div class="kick">${kick}</div><h1>${deva(title)}</h1>${sub ? `<p>${deva(sub)}</p>` : ""}` +
+        (stats.length ? `<div class="stats">${stats.map((s) => `<div class="stat"><b>${s.v}</b><span>${s.l}</span></div>`).join("")}</div>` : "") +
+        (foot ? `<div class="foot">${foot}</div>` : "");
+      c.classList.remove("show"); void c.offsetWidth; c.classList.add("show");
+    },
+    hideCard() { $("card").classList.remove("show"); },
+    tap(x, y) {
+      const t = document.createElement("div"); t.className = "tap"; t.style.left = x + "px"; t.style.top = y + "px";
+      document.body.appendChild(t); setTimeout(() => t.remove(), 1000);
+    },
+  };
+</script>
+</body>
+</html>

@@ -105,7 +105,8 @@ export function Advisor() {
 
   // Persona deep-link from the landing page (?persona=kirana)
   useEffect(() => {
-    const persona = new URLSearchParams(window.location.search).get("persona");
+    const persona = new URLSearchParams(window.location.search).get("persona") ?? sessionStorage.getItem("accel-persona");
+    sessionStorage.removeItem("accel-persona");
     if (persona && PERSONAS[persona]) {
       window.history.replaceState(null, "", "/advisor");
       setProfile({ needs: [] });

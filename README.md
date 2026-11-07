@@ -69,6 +69,7 @@ lib/ai/router.ts     NVIDIA NIM + Sarvam with timeouts and fallbacks
 lib/i18n/            English, Hindi, Marathi
 analysis/analyze.py  funnel insights + propensity model → lib/generated/
 docs/                business case (.pptx/.pdf), architecture, privacy note, demo script
+docs/video/          scripted 3-min demo video recorder (Playwright + ffmpeg): npm i && APP_URL=… npm run record
 ```
 
 All data is synthetic, from the hackathon pack. "Today" for KYC date checks is 15 Jul 2026, as the data README specifies.

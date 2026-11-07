@@ -5,6 +5,7 @@ import { BUSINESS_TYPES, NEEDS } from "@/lib/catalogue";
 
 const TYPES = BUSINESS_TYPES.map((b) => b.key);
 const NEED_KEYS = NEEDS.map((n) => n.key);
+const MENTIONS_WIRED = /fib(re|er)|cable|wired|broadband|फाइबर|फायबर|केबल|ब्रॉडब/i;
 
 /** Free text → profile fields. Rules run first (instant); AI only fills gaps when a key is configured. */
 export async function POST(req: Request) {
@@ -29,7 +30,8 @@ export async function POST(req: Request) {
     if (!patch.employees && Number.isInteger(ai.employees) && ai.employees! > 0) patch.employees = ai.employees!;
     if (!patch.sites && Number.isInteger(ai.sites) && ai.sites! > 0) patch.sites = ai.sites!;
     if (patch.hasGstin === undefined && typeof ai.hasGstin === "boolean") patch.hasGstin = ai.hasGstin;
-    if (!patch.noFibre && ai.noFibre === true) patch.noFibre = true;
+    // Only when the owner actually talked about wired internet: a guessed "no fibre" silently swaps fibre for AirFiber.
+    if (!patch.noFibre && ai.noFibre === true && MENTIONS_WIRED.test(String(text))) patch.noFibre = true;
     const extra = (ai.needs ?? []).filter((n): n is Need => NEED_KEYS.includes(n as Need));
     if (extra.length) patch.needs = [...new Set([...(patch.needs ?? []), ...extra])];
     if (!patch.city && ai.city) patch.city = String(ai.city);

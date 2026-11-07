@@ -45,3 +45,9 @@ next-env.d.ts
 # deck tooling
 /docs/deck/node_modules
 !.env.example
+
+# demo video tooling (re-record with docs/video/record.mjs)
+/docs/video/node_modules
+/docs/video/frames
+/docs/video/*.mp4
+/docs/video/failure.png
