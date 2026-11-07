@@ -10,12 +10,12 @@ import type { Lang } from "../types";
  */
 
 const NIM_BASE = process.env.NIM_BASE_URL || "https://integrate.api.nvidia.com/v1";
-const NIM_CHAT = process.env.NIM_CHAT_MODEL || "deepseek-ai/deepseek-v4.1-flash";
+const NIM_CHAT = process.env.NIM_CHAT_MODEL || "nvidia/nemotron-3.5-bolt-e4b";
 const NIM_VISION = process.env.NIM_VISION_MODEL || "nvidia/nemotron-3.5-super-vl-120b-a12b";
 const SARVAM_BASE = process.env.SARVAM_BASE_URL || "https://api.sarvam.ai";
-const SARVAM_CHAT = process.env.SARVAM_CHAT_MODEL || "sarvam-m";
+const SARVAM_CHAT = process.env.SARVAM_CHAT_MODEL || "sarvam-105b";
 const SARVAM_STT = process.env.SARVAM_STT_MODEL || "saarika:v2.5";
-const SARVAM_TTS = process.env.SARVAM_TTS_MODEL || "bulbul:v2";
+const SARVAM_TTS = process.env.SARVAM_TTS_MODEL || "bulbul:v3";
 
 const nimKey = () => (process.env.NVIDIA_API_KEY || "").trim();
 const sarvamKey = () => (process.env.SARVAM_API_KEY || "").trim();
@@ -26,12 +26,16 @@ export function aiStatus() {
 
 type Msg = { role: "system" | "user" | "assistant"; content: string | unknown[] };
 
-function provider(lang: Lang): { url: string; model: string; headers: Record<string, string>; name: string } | null {
+// Reasoning models think before answering; switch that off so the first word arrives fast.
+const NO_THINK_NIM = { chat_template_kwargs: { enable_thinking: false } };
+const NO_THINK_SARVAM = { reasoning_effort: null };
+
+function provider(lang: Lang): { url: string; model: string; headers: Record<string, string>; name: string; extra: Record<string, unknown> } | null {
   if ((lang === "hi" || lang === "mr") && sarvamKey())
-    return { url: `${SARVAM_BASE}/v1/chat/completions`, model: SARVAM_CHAT, headers: { "api-subscription-key": sarvamKey(), Authorization: `Bearer ${sarvamKey()}` }, name: "sarvam" };
-  if (nimKey()) return { url: `${NIM_BASE}/chat/completions`, model: NIM_CHAT, headers: { Authorization: `Bearer ${nimKey()}` }, name: "nim" };
+    return { url: `${SARVAM_BASE}/v1/chat/completions`, model: SARVAM_CHAT, headers: { "api-subscription-key": sarvamKey(), Authorization: `Bearer ${sarvamKey()}` }, name: "sarvam", extra: NO_THINK_SARVAM };
+  if (nimKey()) return { url: `${NIM_BASE}/chat/completions`, model: NIM_CHAT, headers: { Authorization: `Bearer ${nimKey()}` }, name: "nim", extra: NIM_CHAT.startsWith("nvidia/") ? NO_THINK_NIM : {} };
   if (sarvamKey())
-    return { url: `${SARVAM_BASE}/v1/chat/completions`, model: SARVAM_CHAT, headers: { "api-subscription-key": sarvamKey(), Authorization: `Bearer ${sarvamKey()}` }, name: "sarvam" };
+    return { url: `${SARVAM_BASE}/v1/chat/completions`, model: SARVAM_CHAT, headers: { "api-subscription-key": sarvamKey(), Authorization: `Bearer ${sarvamKey()}` }, name: "sarvam", extra: NO_THINK_SARVAM };
   return null;
 }
 
@@ -45,7 +49,7 @@ export async function streamChat(lang: Lang, messages: Msg[], opts: { firstToken
     const res = await fetch(p.url, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "text/event-stream", ...p.headers },
-      body: JSON.stringify({ model: p.model, messages, stream: true, temperature: 0.4, max_tokens: opts.maxTokens ?? 320 }),
+      body: JSON.stringify({ ...p.extra, model: p.model, messages, stream: true, temperature: 0.4, max_tokens: opts.maxTokens ?? 320 }),
       signal: ctrl.signal,
     });
     if (!res.ok || !res.body) return null;
@@ -57,27 +61,36 @@ export async function streamChat(lang: Lang, messages: Msg[], opts: { firstToken
     let inThink = false;
     return new ReadableStream<Uint8Array>({
       async pull(controller) {
-        const { value, done } = await reader.read();
-        if (done) return controller.close();
-        buf += dec.decode(value, { stream: true });
-        const events = buf.split("\n");
-        buf = events.pop() ?? "";
-        for (const line of events) {
-          const l = line.trim();
-          if (!l.startsWith("data:")) continue;
-          const data = l.slice(5).trim();
-          if (data === "[DONE]") return controller.close();
-          try {
-            let delta: string = JSON.parse(data).choices?.[0]?.delta?.content ?? "";
-            // Hide reasoning traces some models emit
-            if (delta.includes("<think>")) inThink = true;
-            if (inThink) {
-              if (delta.includes("</think>")) { delta = delta.split("</think>").pop() ?? ""; inThink = false; } else continue;
+        // Keep reading until we emit text or finish: a pull that enqueues nothing
+        // (e.g. a usage-only chunk) is never called again, which would hang the stream.
+        for (;;) {
+          const { value, done } = await reader.read();
+          if (done) return controller.close();
+          buf += dec.decode(value, { stream: true });
+          const events = buf.split("\n");
+          buf = events.pop() ?? "";
+          let sent = false;
+          for (const line of events) {
+            const l = line.trim();
+            if (!l.startsWith("data:")) continue;
+            const data = l.slice(5).trim();
+            if (data === "[DONE]") {
+              reader.cancel().catch(() => {});
+              return controller.close();
             }
-            if (delta) controller.enqueue(enc.encode(delta));
-          } catch {
-            /* ignore keep-alives */
+            try {
+              let delta: string = JSON.parse(data).choices?.[0]?.delta?.content ?? "";
+              // Hide reasoning traces some models emit
+              if (delta.includes("<think>")) inThink = true;
+              if (inThink) {
+                if (delta.includes("</think>")) { delta = delta.split("</think>").pop() ?? ""; inThink = false; } else continue;
+              }
+              if (delta) { controller.enqueue(enc.encode(delta)); sent = true; }
+            } catch {
+              /* ignore keep-alives */
+            }
           }
+          if (sent) return;
         }
       },
       cancel() {
@@ -100,7 +113,7 @@ export async function completeJSON<T>(lang: Lang, messages: Msg[], timeoutMs = 3
     const res = await fetch(p.url, {
       method: "POST",
       headers: { "Content-Type": "application/json", ...p.headers },
-      body: JSON.stringify({ model: p.model, messages, temperature: 0, max_tokens: 400 }),
+      body: JSON.stringify({ ...p.extra, model: p.model, messages, temperature: 0, max_tokens: 400 }),
       signal: ctrl.signal,
     });
     if (!res.ok) return null;
@@ -125,6 +138,7 @@ export async function visionRead(dataUrl: string, timeoutMs = 9000): Promise<str
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${nimKey()}` },
       body: JSON.stringify({
+        ...(NIM_VISION.startsWith("nvidia/") ? NO_THINK_NIM : {}),
         model: NIM_VISION,
         temperature: 0,
         max_tokens: 500,
@@ -174,7 +188,7 @@ export async function textToSpeech(text: string, lang: Lang): Promise<string | n
     const res = await fetch(`${SARVAM_BASE}/text-to-speech`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "api-subscription-key": sarvamKey() },
-      body: JSON.stringify({ text: text.slice(0, 1400), inputs: [text.slice(0, 480)], target_language_code: SARVAM_LANG[lang], model: SARVAM_TTS, speaker: process.env.SARVAM_SPEAKER || "anushka" }),
+      body: JSON.stringify({ text: text.slice(0, 1400), target_language_code: SARVAM_LANG[lang], model: SARVAM_TTS, speaker: process.env.SARVAM_SPEAKER || "priya" }),
       signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) return null;

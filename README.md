@@ -20,7 +20,19 @@ npm test             # 40 tests: 12 KYC applicants, 15 advisor scenarios, 400-pr
 npm run build && npm start
 ```
 
-No API keys needed: every AI path has a deterministic fallback. To turn AI on, copy `.env.example` to `.env.local` and add `NVIDIA_API_KEY` / `SARVAM_API_KEY`. Then run `npx tsx --env-file=.env.local scripts/bakeoff.ts` to pick the fastest accurate models.
+No API keys needed: every AI path has a deterministic fallback. To turn AI on, copy `.env.example` to `.env.local` and add `NVIDIA_API_KEY` / `SARVAM_API_KEY` (on Vercel: Project → Settings → Environment Variables). `GET /api/health` shows which providers are on.
+
+### AI models (tested live, 7 Nov 2026)
+
+| Job | Provider · model | Measured through the app |
+|---|---|---|
+| English explanation + free-text parsing | NVIDIA NIM · `nvidia/nemotron-3.5-bolt-e4b` | first word 0.3 s, full answer 1.0 s |
+| Hindi / Marathi explanation | Sarvam · `sarvam-105b` (reasoning off) | first word 0.3 s, full answer 1.6 s |
+| KYC document reading | NVIDIA NIM · `nvidia/nemotron-3.5-super-vl-120b-a12b` (thinking off) | 2.4 s per document |
+| Voice reply (text-to-speech) | Sarvam · `bulbul:v3`, voice `priya` | 0.7 s |
+| Voice input (speech-to-text) | Sarvam · `saarika:v2.5` | 0.5 s |
+
+Retired or too slow on 7 Nov 2026, so not used: `sarvam-m` and `bulbul:v2` (retired by Sarvam), `meta/llama-3.1-8b-instruct` (end of life on NIM), and `deepseek-v4.1-flash`, `gemma-4-31b-it`, `gpt-oss-20b`, `llama-3.2-90b-vision` (no reply within 30 s). Override any model in `.env.local`; `npx tsx --env-file=.env.local scripts/bakeoff.ts` re-ranks them.
 
 Regenerate data and the model from the CSVs: `npm run data` (Node + Python with pandas/scikit-learn).
 
@@ -42,7 +54,7 @@ Regenerate data and the model from the CSVs: `npm run data` (Node + Python with 
 
 ![architecture](docs/architecture.png)
 
-- **Never hangs:** bundle, prices and parsing run in the browser; pages are pre-rendered; AI streams with a 3.5 s timeout and falls back to templates; the OCR worker is self-hosted and warmed up on the consent screen.
+- **Never hangs:** bundle, prices and parsing run in the browser; pages are pre-rendered; AI streams with a 3.5 s timeout and falls back to templates; reasoning ("thinking") is switched off so answers start immediately; the OCR worker is self-hosted and warmed up on the consent screen.
 - **Never wrong on rules:** `lib/engine/recommend.ts` is the only thing that picks products, and `/api/orders` re-checks eligibility and re-prices every order on the server.
 - **Privacy:** images stay on the phone; the server gets extracted fields only; identifiers are masked in the UI and logs; retention is enforced on start. See `docs/privacy-note.pdf`.
 

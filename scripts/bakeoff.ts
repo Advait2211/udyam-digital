@@ -12,7 +12,7 @@ const NIM = process.env.NIM_BASE_URL || "https://integrate.api.nvidia.com/v1";
 const KEY = process.env.NVIDIA_API_KEY;
 const SARVAM = process.env.SARVAM_API_KEY;
 
-const CHAT = ["deepseek-ai/deepseek-v4.1-flash", "nvidia/nemotron-3.5-lightning-30b-a3b", "google/gemma-4-31b-it", "openai/gpt-oss-20b"];
+const CHAT = ["nvidia/nemotron-3.5-bolt-e4b", "nvidia/nemotron-3.5-lightning-30b-a3b", "deepseek-ai/deepseek-v4.1-flash", "google/gemma-4-31b-it"];
 const VISION = ["nvidia/nemotron-3.5-super-vl-120b-a12b", "meta/llama-3.2-90b-vision-instruct"];
 
 const PROMPTS: [string, Record<string, unknown>][] = [
@@ -35,7 +35,7 @@ async function chat(base: string, headers: Record<string, string>, model: string
   const res = await fetch(`${base}/chat/completions`, {
     method: "POST",
     headers: { "Content-Type": "application/json", ...headers },
-    body: JSON.stringify({ model, stream: true, temperature: 0, max_tokens: 200, messages: [{ role: "system", content: SYSTEM }, { role: "user", content: user }] }),
+    body: JSON.stringify({ ...(model.startsWith("nvidia/") ? { chat_template_kwargs: { enable_thinking: false } } : model.startsWith("sarvam") ? { reasoning_effort: null } : {}), model, stream: true, temperature: 0, max_tokens: 200, messages: [{ role: "system", content: SYSTEM }, { role: "user", content: user }] }),
     signal: AbortSignal.timeout(20000),
   });
   if (!res.ok || !res.body) throw new Error(`${res.status}`);
@@ -85,7 +85,7 @@ async function runVision(model: string) {
     const res = await fetch(`${NIM}/chat/completions`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${KEY}` },
-      body: JSON.stringify({ model, temperature: 0, max_tokens: 400, messages: [{ role: "user", content: [{ type: "text", text: "Transcribe this document as 'Label Value' lines." }, { type: "image_url", image_url: { url: `data:image/png;base64,${b64}` } }] }] }),
+      body: JSON.stringify({ ...(model.startsWith("nvidia/") ? { chat_template_kwargs: { enable_thinking: false } } : {}), model, temperature: 0, max_tokens: 400, messages: [{ role: "user", content: [{ type: "text", text: "Transcribe this document as 'Label Value' lines." }, { type: "image_url", image_url: { url: `data:image/png;base64,${b64}` } }] }] }),
       signal: AbortSignal.timeout(30000),
     }).catch(() => null);
     ms += performance.now() - t0;
@@ -106,7 +106,7 @@ async function runVision(model: string) {
   }
   if (SARVAM) {
     console.log("\nChat (Sarvam)");
-    await runChat("sarvam-m", "https://api.sarvam.ai/v1", { "api-subscription-key": SARVAM, Authorization: `Bearer ${SARVAM}` }, process.env.SARVAM_CHAT_MODEL || "sarvam-m");
+    await runChat("sarvam-105b", "https://api.sarvam.ai/v1", { "api-subscription-key": SARVAM, Authorization: `Bearer ${SARVAM}` }, process.env.SARVAM_CHAT_MODEL || "sarvam-105b");
   }
   console.log("\nPut the winners in .env.local as NIM_CHAT_MODEL / NIM_VISION_MODEL / SARVAM_CHAT_MODEL.");
 })();
