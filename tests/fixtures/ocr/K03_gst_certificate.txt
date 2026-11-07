@@ -1,0 +1,18 @@
+Specimen: GST Registration Certificate
+Format for hackathon OCR testing only
+
+GSTIN 27XUIXG0767D1ZP
+
+Legal name Joseph Singh (Prop. Ganesh Woodcraft)
+Trade name Ganesh Woodcraft
+
+Constitution Proprietorship
+
+Address of principal Shop/Unit 80, Civil Lines, Nagpur, Maharashtr
+
+place of business a- 411231
+
+Date of liability 2020-02-10
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

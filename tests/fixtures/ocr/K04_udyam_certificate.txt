@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-MH- 00-6131836
+
+Enterprise name Saffron Dental Care LLP
+
+Major activity Services
+
+City Nagpur
+
+State Maharashtra
+
+Date of registration 2025-05-17
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

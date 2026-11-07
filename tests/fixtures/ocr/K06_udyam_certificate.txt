@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-RJ-00-6577157
+
+Enterprise name Saffron Unisex Salon
+
+Major activity Services
+
+City Jaipur
+
+State Rajasthan
+
+Date of registration 2023-01-24
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

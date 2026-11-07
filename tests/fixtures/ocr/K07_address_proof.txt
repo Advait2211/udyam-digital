@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 7545812405
+
+Billed to Neelgiri Physio Clinic
+
+Supply address Shop/Unit 52, Transport Nagar, Delhi, Delhi -
+
+334596
+
+Bill date 2026-07-05
+
+Units consumed 1652
+
+Amount due (INR) 10,690
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

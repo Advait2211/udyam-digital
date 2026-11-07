@@ -1,0 +1,686 @@
+{
+ "headline": {
+  "leads": 5000,
+  "activated": 368,
+  "activationRate": 7.4,
+  "avgDaysToActivate": 17.6,
+  "avgFollowUpCalls": 3.0,
+  "blendedCAC": 15053,
+  "gstinRate": 9.6,
+  "noGstinRate": 2.0,
+  "medianMRR": 6900,
+  "churn6m": 15.2,
+  "nps": 6.9
+ },
+ "funnel": [
+  {
+   "stage": "Lead",
+   "count": 5000
+  },
+  {
+   "stage": "Contacted",
+   "count": 3406,
+   "pctPrev": 68.1
+  },
+  {
+   "stage": "Needs assessed",
+   "count": 1974,
+   "pctPrev": 58.0
+  },
+  {
+   "stage": "Quote accepted",
+   "count": 861,
+   "pctPrev": 43.6
+  },
+  {
+   "stage": "KYC complete",
+   "count": 588,
+   "pctPrev": 68.3
+  },
+  {
+   "stage": "Activated",
+   "count": 368,
+   "pctPrev": 62.6
+  }
+ ],
+ "drops": [
+  {
+   "stage": "Lead",
+   "reason": "Unreachable after 3 attempts",
+   "n": 805,
+   "fixedBy": "advisor"
+  },
+  {
+   "stage": "Contacted",
+   "reason": "Owner had no time for a visit",
+   "n": 531,
+   "fixedBy": "advisor"
+  },
+  {
+   "stage": "Lead",
+   "reason": "Not interested on first call",
+   "n": 470,
+   "fixedBy": null
+  },
+  {
+   "stage": "Needs assessed",
+   "reason": "Price too high",
+   "n": 414,
+   "fixedBy": null
+  },
+  {
+   "stage": "Contacted",
+   "reason": "Locked in with current provider",
+   "n": 325,
+   "fixedBy": null
+  },
+  {
+   "stage": "Lead",
+   "reason": "Wrong or invalid number",
+   "n": 319,
+   "fixedBy": null
+  },
+  {
+   "stage": "Contacted",
+   "reason": "Visit not scheduled by sales",
+   "n": 296,
+   "fixedBy": "advisor"
+  },
+  {
+   "stage": "Contacted",
+   "reason": "Only wanted a mobile plan",
+   "n": 280,
+   "fixedBy": null
+  },
+  {
+   "stage": "Needs assessed",
+   "reason": "Competitor offered cheaper plan",
+   "n": 207,
+   "fixedBy": null
+  },
+  {
+   "stage": "Needs assessed",
+   "reason": "Quote too complex to understand",
+   "n": 206,
+   "fixedBy": "quote"
+  },
+  {
+   "stage": "Needs assessed",
+   "reason": "Quote took too long to arrive",
+   "n": 179,
+   "fixedBy": "quote"
+  },
+  {
+   "stage": "Needs assessed",
+   "reason": "Decided to wait",
+   "n": 107,
+   "fixedBy": null
+  },
+  {
+   "stage": "KYC complete",
+   "reason": "Installation delayed beyond 21 days",
+   "n": 98,
+   "fixedBy": "tracker"
+  },
+  {
+   "stage": "Quote accepted",
+   "reason": "Missing GST or Udyam document",
+   "n": 94,
+   "fixedBy": "kyc"
+  },
+  {
+   "stage": "Quote accepted",
+   "reason": "Found paperwork too long",
+   "n": 79,
+   "fixedBy": "kyc"
+  },
+  {
+   "stage": "KYC complete",
+   "reason": "Customer cancelled before install",
+   "n": 53,
+   "fixedBy": "tracker"
+  },
+  {
+   "stage": "Quote accepted",
+   "reason": "Authorised signatory not available",
+   "n": 53,
+   "fixedBy": "kyc"
+  },
+  {
+   "stage": "Quote accepted",
+   "reason": "Document details did not match",
+   "n": 47,
+   "fixedBy": "kyc"
+  },
+  {
+   "stage": "KYC complete",
+   "reason": "Site not feasible for fibre",
+   "n": 41,
+   "fixedBy": "advisor"
+  },
+  {
+   "stage": "KYC complete",
+   "reason": "First payment failed",
+   "n": 28,
+   "fixedBy": null
+  }
+ ],
+ "segments": [
+  {
+   "segment": "Micro retail & services",
+   "leads": 2709,
+   "activated": 110,
+   "rate": 4.1,
+   "medianMRR": 2470,
+   "meanMRR": 2504,
+   "daysToActivate": 16.6,
+   "churn6m": 22.7,
+   "nps": 7.0,
+   "cac": 20007
+  },
+  {
+   "segment": "Professional offices",
+   "leads": 1247,
+   "activated": 138,
+   "rate": 11.1,
+   "medianMRR": 6575,
+   "meanMRR": 6795,
+   "daysToActivate": 16.9,
+   "churn6m": 13.8,
+   "nps": 6.9,
+   "cac": 10694
+  },
+  {
+   "segment": "Small manufacturers",
+   "leads": 289,
+   "activated": 37,
+   "rate": 12.8,
+   "medianMRR": 15910,
+   "meanMRR": 19979,
+   "daysToActivate": 20.5,
+   "churn6m": 8.1,
+   "nps": 6.5,
+   "cac": 15324
+  },
+  {
+   "segment": "Small multi-site businesses",
+   "leads": 755,
+   "activated": 83,
+   "rate": 11.0,
+   "medianMRR": 28080,
+   "meanMRR": 31233,
+   "daysToActivate": 18.8,
+   "churn6m": 10.8,
+   "nps": 6.7,
+   "cac": 15614
+  }
+ ],
+ "sources": [
+  {
+   "source": "WhatsApp campaign",
+   "leads": 358,
+   "activated": 10,
+   "rate": 2.8,
+   "cac": 4026
+  },
+  {
+   "source": "Referral",
+   "leads": 413,
+   "activated": 61,
+   "rate": 14.8,
+   "cac": 4098
+  },
+  {
+   "source": "Inbound call",
+   "leads": 504,
+   "activated": 48,
+   "rate": 9.5,
+   "cac": 5113
+  },
+  {
+   "source": "Website form",
+   "leads": 995,
+   "activated": 43,
+   "rate": 4.3,
+   "cac": 6351
+  },
+  {
+   "source": "Channel partner",
+   "leads": 1010,
+   "activated": 81,
+   "rate": 8.0,
+   "cac": 20850
+  },
+  {
+   "source": "Field sales",
+   "leads": 1720,
+   "activated": 125,
+   "rate": 7.3,
+   "cac": 24334
+  }
+ ],
+ "followUpCalls": [
+  {
+   "calls": 1,
+   "n": 34,
+   "churn6m": 5.9,
+   "nps": 7.5
+  },
+  {
+   "calls": 2,
+   "n": 84,
+   "churn6m": 14.3,
+   "nps": 7.2
+  },
+  {
+   "calls": 3,
+   "n": 137,
+   "churn6m": 11.7,
+   "nps": 6.9
+  },
+  {
+   "calls": 4,
+   "n": 70,
+   "churn6m": 20.0,
+   "nps": 6.7
+  },
+  {
+   "calls": 5,
+   "n": 43,
+   "churn6m": 27.9,
+   "nps": 6.0
+  }
+ ],
+ "daysToActivate": [
+  {
+   "bucket": "≤14",
+   "n": 86,
+   "nps": 7.2,
+   "churn6m": 16.3
+  },
+  {
+   "bucket": "15–18",
+   "n": 139,
+   "nps": 7.1,
+   "churn6m": 13.7
+  },
+  {
+   "bucket": "19–22",
+   "n": 100,
+   "nps": 6.6,
+   "churn6m": 16.0
+  },
+  {
+   "bucket": "23+",
+   "n": 43,
+   "nps": 5.9,
+   "churn6m": 16.3
+  }
+ ],
+ "topProducts": {
+  "Micro retail & services": [
+   {
+    "product": "P07",
+    "share": 100.0
+   },
+   {
+    "product": "P01",
+    "share": 91.8
+   },
+   {
+    "product": "P19",
+    "share": 33.6
+   },
+   {
+    "product": "P22",
+    "share": 30.9
+   },
+   {
+    "product": "P23",
+    "share": 30.0
+   },
+   {
+    "product": "P15",
+    "share": 25.5
+   }
+  ],
+  "Professional offices": [
+   {
+    "product": "P16",
+    "share": 100.0
+   },
+   {
+    "product": "P08",
+    "share": 52.2
+   },
+   {
+    "product": "P20",
+    "share": 48.6
+   },
+   {
+    "product": "P07",
+    "share": 47.8
+   },
+   {
+    "product": "P02",
+    "share": 44.2
+   },
+   {
+    "product": "P17",
+    "share": 40.6
+   }
+  ],
+  "Small manufacturers": [
+   {
+    "product": "P08",
+    "share": 100.0
+   },
+   {
+    "product": "P16",
+    "share": 100.0
+   },
+   {
+    "product": "P05",
+    "share": 51.4
+   },
+   {
+    "product": "P20",
+    "share": 43.2
+   },
+   {
+    "product": "P21",
+    "share": 37.8
+   },
+   {
+    "product": "P23",
+    "share": 35.1
+   }
+  ],
+  "Small multi-site businesses": [
+   {
+    "product": "P08",
+    "share": 100.0
+   },
+   {
+    "product": "P09",
+    "share": 56.6
+   },
+   {
+    "product": "P01",
+    "share": 51.8
+   },
+   {
+    "product": "P19",
+    "share": 51.8
+   },
+   {
+    "product": "P02",
+    "share": 48.2
+   },
+   {
+    "product": "P23",
+    "share": 45.8
+   }
+  ]
+ },
+ "langChannel": [
+  {
+   "source": "Channel partner",
+   "langGroup": "English/Hindi",
+   "rate": 9.1,
+   "leads": 680
+  },
+  {
+   "source": "Channel partner",
+   "langGroup": "Regional",
+   "rate": 5.8,
+   "leads": 330
+  },
+  {
+   "source": "Field sales",
+   "langGroup": "English/Hindi",
+   "rate": 7.4,
+   "leads": 1138
+  },
+  {
+   "source": "Field sales",
+   "langGroup": "Regional",
+   "rate": 7.0,
+   "leads": 582
+  },
+  {
+   "source": "Inbound call",
+   "langGroup": "English/Hindi",
+   "rate": 11.5,
+   "leads": 323
+  },
+  {
+   "source": "Inbound call",
+   "langGroup": "Regional",
+   "rate": 6.1,
+   "leads": 181
+  },
+  {
+   "source": "Referral",
+   "langGroup": "English/Hindi",
+   "rate": 15.8,
+   "leads": 266
+  },
+  {
+   "source": "Referral",
+   "langGroup": "Regional",
+   "rate": 12.9,
+   "leads": 147
+  },
+  {
+   "source": "Website form",
+   "langGroup": "English/Hindi",
+   "rate": 4.8,
+   "leads": 651
+  },
+  {
+   "source": "Website form",
+   "langGroup": "Regional",
+   "rate": 3.5,
+   "leads": 344
+  },
+  {
+   "source": "WhatsApp campaign",
+   "langGroup": "English/Hindi",
+   "rate": 2.8,
+   "leads": 247
+  },
+  {
+   "source": "WhatsApp campaign",
+   "langGroup": "Regional",
+   "rate": 2.7,
+   "leads": 111
+  }
+ ],
+ "byLanguage": [
+  {
+   "key": "Bengali",
+   "rate": 9.0,
+   "leads": 111,
+   "activated": 10
+  },
+  {
+   "key": "Malayalam",
+   "rate": 8.4,
+   "leads": 83,
+   "activated": 7
+  },
+  {
+   "key": "English",
+   "rate": 8.0,
+   "leads": 1168,
+   "activated": 94
+  },
+  {
+   "key": "Hindi",
+   "rate": 7.9,
+   "leads": 2137,
+   "activated": 169
+  },
+  {
+   "key": "Telugu",
+   "rate": 7.7,
+   "leads": 207,
+   "activated": 16
+  },
+  {
+   "key": "Marathi",
+   "rate": 6.3,
+   "leads": 505,
+   "activated": 32
+  },
+  {
+   "key": "Gujarati",
+   "rate": 6.0,
+   "leads": 233,
+   "activated": 14
+  },
+  {
+   "key": "Kannada",
+   "rate": 5.1,
+   "leads": 253,
+   "activated": 13
+  },
+  {
+   "key": "Tamil",
+   "rate": 4.3,
+   "leads": 207,
+   "activated": 9
+  },
+  {
+   "key": "Punjabi",
+   "rate": 4.2,
+   "leads": 96,
+   "activated": 4
+  }
+ ],
+ "byTurnover": [
+  {
+   "key": "5 - 25 cr",
+   "rate": 13.0,
+   "leads": 731,
+   "activated": 95
+  },
+  {
+   "key": "25 - 100 cr",
+   "rate": 10.3,
+   "leads": 223,
+   "activated": 23
+  },
+  {
+   "key": "1.5 - 5 cr",
+   "rate": 8.3,
+   "leads": 1012,
+   "activated": 84
+  },
+  {
+   "key": "40 lakh - 1.5 cr",
+   "rate": 7.0,
+   "leads": 1537,
+   "activated": 108
+  },
+  {
+   "key": "< 40 lakh",
+   "rate": 3.9,
+   "leads": 1497,
+   "activated": 58
+  }
+ ],
+ "byInternet": [
+  {
+   "key": "Leased line",
+   "rate": 15.0,
+   "leads": 173,
+   "activated": 26
+  },
+  {
+   "key": "Mixed per site",
+   "rate": 12.7,
+   "leads": 221,
+   "activated": 28
+  },
+  {
+   "key": "Business broadband",
+   "rate": 9.3,
+   "leads": 1433,
+   "activated": 133
+  },
+  {
+   "key": "Home broadband",
+   "rate": 7.6,
+   "leads": 1250,
+   "activated": 95
+  },
+  {
+   "key": "Mobile hotspot",
+   "rate": 4.5,
+   "leads": 1799,
+   "activated": 81
+  }
+ ],
+ "byProvider": [
+  {
+   "key": "Accel (mobile only)",
+   "rate": 9.2,
+   "leads": 1505,
+   "activated": 139
+  },
+  {
+   "key": "Accel",
+   "rate": 9.1,
+   "leads": 385,
+   "activated": 35
+  },
+  {
+   "key": "Competitor B",
+   "rate": 7.4,
+   "leads": 744,
+   "activated": 55
+  },
+  {
+   "key": "Competitor A",
+   "rate": 6.5,
+   "leads": 1200,
+   "activated": 78
+  },
+  {
+   "key": "Local ISP",
+   "rate": 5.4,
+   "leads": 1042,
+   "activated": 56
+  }
+ ],
+ "byTier": [
+  {
+   "key": "1.0",
+   "rate": 8.6,
+   "leads": 2578,
+   "activated": 221
+  },
+  {
+   "key": "2.0",
+   "rate": 6.1,
+   "leads": 2422,
+   "activated": 147
+  }
+ ],
+ "byUdyam": [
+  {
+   "key": "Y",
+   "rate": 8.9,
+   "leads": 2723,
+   "activated": 241
+  },
+  {
+   "key": "N",
+   "rate": 5.6,
+   "leads": 2277,
+   "activated": 127
+  }
+ ]
+}

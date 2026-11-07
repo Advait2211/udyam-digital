@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-AP-00-5186772
+
+Enterprise name Star Electronics
+
+Major activity Services
+
+City Visakhapatnam
+
+State Andhra Pradesh
+
+Date of registration 2024-02-03
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

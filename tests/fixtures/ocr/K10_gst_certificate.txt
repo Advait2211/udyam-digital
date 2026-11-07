@@ -1,0 +1,18 @@
+Specimen: GST Registration Certificate
+Format for hackathon OCR testing only
+
+GSTIN 27QHIXKO658U1ZL
+
+Legal name Kaveri Stays LLP
+
+Trade name Kaveri Stays LLP
+
+Constitution Limited Liability Partnership
+Address of principal Shop/Unit 21, Sector 14, Mumbai, Maharashtra
+
+place of business - 570043
+
+Date of liability 2022-07-13
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

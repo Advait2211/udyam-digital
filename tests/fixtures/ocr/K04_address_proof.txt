@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 7397844759
+
+Billed to Saffron Dental Care LLP
+
+Supply address Shop/Unit 75, Lake View Colony, Nagpur, Mahar
+
+ashtra - 137452
+
+Bill date 2026-05-28
+
+Units consumed 2295
+
+Amount due (INR) 20,713
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

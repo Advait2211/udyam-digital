@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 9790713533
+
+Billed to Harmony Dental Care
+
+Supply address Shop/Unit 199, Station Road, Kolkata, West Be
+
+ngal - 347550
+
+Bill date 2026-05-22
+
+Units consumed 992
+
+Amount due (INR) 7,077
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

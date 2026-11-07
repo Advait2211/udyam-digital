@@ -1,0 +1,19 @@
+Specimen: GST Registration Certificate
+
+Format for hackathon OCR testing only
+
+GSTIN 37THKXV5167L1ZS
+
+Legal name Neha Kaur (Prop. Vindhya Tours & Travels)
+Trade name Vindhya Tours & Travels
+
+Constitution Proprietorship
+
+Address of principal Shop/Unit 1, Tech Park Road, Visakhapatnam, A
+
+place of business ndhra Pradesh --118383
+
+Date of liability 2025-06-07
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

@@ -1,0 +1,17 @@
+Specimen: GST Registration Certificate
+Format for hackathon OCR testing only
+
+GSTIN O3KGZXT1320R1ZZ
+
+Legal name Trinity Bake House Pvt Ltd
+
+Trade name Trinity Bake House Pvt Ltd
+Constitution Private Limited Company
+Address of principal Shop/Unit 188, Industrial Area Phase 2, Ludhi
+
+place of business ana, Punjab - 541498
+
+Date of liability 2019-08-19
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

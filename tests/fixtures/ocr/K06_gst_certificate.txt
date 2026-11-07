@@ -1,0 +1,18 @@
+Specimen: GST Registration Certificate
+Format for hackathon OCR testing only
+
+GSTIN O8YKZXS8189L1Z0
+
+Legal name Pooja Shah (Prop. Saffron Unisex Salon)
+Trade name Saffron Unisex Salon
+
+Constitution Proprietorship
+
+Address of principal Shop/Unit 71, Market Yard, Jaipur, Rajasthan
+
+place of business - 194057
+
+Date of liability 2019-09-25
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

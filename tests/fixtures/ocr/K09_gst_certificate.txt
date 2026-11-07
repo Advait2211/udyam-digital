@@ -1,0 +1,19 @@
+Specimen: GST Registration Certificate
+
+Format for hackathon OCR testing only
+
+GSTIN 37LDYXK0296F1ZB
+
+Legal name Anita Kulkarni (Prop. Kaveri Insurance Advisors)
+Trade name Kaveri Insurance Advisors
+
+Constitution Proprietorship
+
+Address of principal Shop/Unit 217, Civil Lines, Visakhapatnam, An
+
+place of business dhra Pradesh - 405337
+
+Date of liability 2023-09-20
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

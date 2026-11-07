@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-DL-00-9565547
+
+Enterprise name Neelgiri Physio Clinic
+
+Major activity Services
+
+City Delhi
+
+State Delhi
+
+Date of registration 2024-07-14
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

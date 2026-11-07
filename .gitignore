@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# app database (synthetic demo data, recreated on start)
+/data/app.db*
+# deck tooling
+/docs/deck/node_modules
+!.env.example

@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-MH-00- 9516696
+
+Enterprise name Ganesh Woodcraft
+
+Major activity Manufacturing
+
+City Nagpur
+
+State Maharashtra
+
+Date of registration 2024-11-21
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

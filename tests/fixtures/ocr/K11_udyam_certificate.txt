@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-PB-00-9719478
+
+Enterprise name Trinity Bake House Pvt Ltd
+
+Major activity Services
+
+City Ludhiana
+
+State Punjab
+
+Date of registration 2025-09-15
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

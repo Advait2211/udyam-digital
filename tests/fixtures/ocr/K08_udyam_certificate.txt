@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-GJ-00-8477445
+
+Enterprise name Green Leaf Legal Associates
+
+Major activity Services
+
+City Vadodara
+
+State Gujarat
+
+Date of registration 2022-11-12
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

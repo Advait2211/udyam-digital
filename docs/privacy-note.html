@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Privacy and security note</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  @page { size: A4; margin: 10mm 12mm; }
+  :root { --ink:#1f1a17; --muted:#6f655e; --brand:#e5232b; --line:#eadccf; --soft:#fff6f0; --mint:#0e9f6e; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Plus Jakarta Sans", Arial, sans-serif; color:var(--ink); font-size:9pt; line-height:1.32; }
+  header { display:flex; align-items:flex-end; justify-content:space-between; border-bottom:2px solid var(--ink); padding-bottom:6px; margin-bottom:8px; }
+  h1 { margin:0; font-size:17pt; letter-spacing:-0.02em; font-weight:800; }
+  .tag { font-size:8.5pt; color:var(--muted); font-weight:600; text-align:right; }
+  .lead { font-size:9.5pt; margin:0 0 7px; }
+  .lead b { color:var(--brand); }
+  .cols { display:grid; grid-template-columns: 1fr 1fr; gap:8px 14px; }
+  h2 { font-size:10.5pt; margin:0 0 3px; font-weight:800; display:flex; gap:6px; align-items:center; }
+  h2 span { display:inline-grid; place-items:center; width:17px; height:17px; border-radius:5px; background:var(--brand); color:#fff; font-size:8.5pt; }
+  ul { margin:0; padding-left:14px; }
+  li { margin:1px 0; }
+  table { width:100%; border-collapse:collapse; font-size:8.3pt; margin-top:2px; }
+  th, td { text-align:left; padding:2px 5px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:7.8pt; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); }
+  .box { background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:7px 9px; }
+  .full { grid-column: 1 / -1; }
+  code { font-size:8.4pt; background:#f3ece6; padding:0 3px; border-radius:3px; }
+  footer { margin-top:8px; font-size:7.8pt; color:var(--muted); border-top:1px solid var(--line); padding-top:5px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Udyam Digital — data privacy &amp; security note</h1>
+  <div class="tag">YTL Hackathon 2026 · Track A · Accel Business (fictional)<br />Designed against the DPDP Act, 2023 · synthetic data only</div>
+</header>
+<p class="lead">Bottom line: <b>documents are read on the owner's phone and never uploaded</b>. The server receives only the fields KYC needs, re-checks everything itself, shows and logs identifiers masked, and asks for consent per purpose before any KYC data is touched.</p>
+
+<div class="cols">
+  <div class="full">
+    <h2><span>1</span> What each step collects — and why (purpose limitation, data minimisation)</h2>
+    <table>
+      <tr><th>Step</th><th>Data</th><th>Purpose</th><th>Where it lives</th></tr>
+      <tr><td>Advisor / chat</td><td>Business type, staff count, locations, city, needs; GSTIN optional</td><td>Recommend an eligible bundle</td><td>Phone (journey choices only); chat state server-side 30 days</td></tr>
+      <tr><td>Quote</td><td>Nothing new</td><td>—</td><td>Phone</td></tr>
+      <tr><td>Smart KYC</td><td>Extracted fields from GST &amp; Udyam certificates, signatory ID, one utility bill; image quality scores</td><td>Telecom KYC and activation only</td><td>Images: phone memory only. Fields: server, for verification and the KYC record</td></tr>
+      <tr><td>e-Sign / order</td><td>Order lines, consent ID, masked GSTIN, verdict</td><td>Fulfilment and billing</td><td>Server (orders table)</td></tr>
+      <tr><td>Hand-off to a person</td><td>Profile without GSTIN, language, stage</td><td>Callback in the owner's language</td><td>Server (leads), visible to assigned team</td></tr>
+    </table>
+  </div>
+
+  <div>
+    <h2><span>2</span> Consent before KYC</h2>
+    <ul>
+      <li>Plain-language notice in English, Hindi or Marathi: what, why, how, how long, rights.</li>
+      <li>Separate toggles: <b>KYC verification</b> (required), DigiLocker fetch (optional), offers (optional, <b>off by default</b>).</li>
+      <li>Stored as a record with timestamp, purposes and notice version (<code>v1.2</code>); every order links to its consent ID.</li>
+      <li>Withdrawal: <code>DELETE /api/consent</code>, exposed on the order page; grievance officer contact on the notice.</li>
+    </ul>
+  </div>
+
+  <div>
+    <h2><span>3</span> Minimisation by design</h2>
+    <ul>
+      <li>Blur check, auto-straighten and OCR (self-hosted Tesseract WASM) run in the browser. <b>No image upload in the default flow.</b></li>
+      <li>Mock GSTIN/Udyam APIs return only the fields the journey needs.</li>
+      <li>AI providers (NVIDIA NIM, Sarvam) receive the business profile with the GSTIN removed. They never receive documents, and they never choose products or prices.</li>
+      <li>The optional AI document reader (<code>/api/kyc/extract</code>) is off without a key. It would need explicit consent and a data-processing agreement before use.</li>
+    </ul>
+  </div>
+
+  <div>
+    <h2><span>4</span> Retention (storage limitation)</h2>
+    <ul>
+      <li><b>Document images:</b> never stored by Accel; released from memory when the tab closes. Extracted fields sit in session storage only until e-sign, then are cleared.</li>
+      <li><b>KYC record:</b> kept only as long as telecom KYC rules require, then deleted.</li>
+      <li><b>Leads that don't convert:</b> 90 days. <b>Chat sessions:</b> 30 days.</li>
+      <li><b>Audit events:</b> 1 year, identifiers already masked (e.g. <code>07CP••••••••1ZT</code>).</li>
+    </ul>
+  </div>
+
+  <div>
+    <h2><span>5</span> Security safeguards</h2>
+    <ul>
+      <li>The server never trusts the client: it re-runs eligibility and pricing on every order and re-validates KYC fields.</li>
+      <li>IDs are masked in the UI, logs and partner console. Partners see a lead's business profile, not its documents.</li>
+      <li>The browser keeps journey choices only — no IDs and no documents — in local storage.</li>
+      <li>Secrets live in environment variables. Every AI call has a hard timeout and a deterministic fallback, so an outage cannot block onboarding.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2><span>6</span> Owner's rights</h2>
+    <ul>
+      <li>Access, correction, erasure and withdrawal from the order page. Grievances acknowledged in 72 hours.</li>
+      <li>A human hand-off is always one tap away. No decision is fully automated: KYC failures route to guided fixes or a person.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2><span>7</span> Before production</h2>
+    <ul>
+      <li>Data protection impact assessment (DPIA); encryption at rest (managed Postgres with a key management service); single sign-on and role-based access for the partner console; rate limits.</li>
+      <li>Data-processing agreements with AI vendors, preferring India-hosted models. Integrate a registered consent manager and DigiLocker/e-sign providers. Breach-response runbook.</li>
+    </ul>
+  </div>
+</div>
+<footer>All businesses, people and identifiers in this prototype are synthetic (hackathon data pack). Demo "today" for date checks: 15 Jul 2026, per the data README.</footer>
+</body>
+</html>

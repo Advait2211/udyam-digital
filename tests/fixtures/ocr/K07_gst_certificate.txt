@@ -1,0 +1,18 @@
+Specimen: GST Registration Certificate
+Format for hackathon OCR testing only
+
+GSTIN 07CPCXNO398P1ZT
+
+Legal name Neha Banerjee (Prop. Shri Physio Clinic)
+Trade name Neelgiri Physio Clinic
+
+Constitution Proprietorship
+
+Address of principal Shop/Unit 52, Transport Nagar, Delhi, Delhi -
+
+place of business 334596
+
+Date of liability 2024-01-13
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-WB-00-5053330
+
+Enterprise name Harmony Dental Care
+
+Major activity Services
+
+City Kolkata
+
+State West Bengal
+
+Date of registration 2023-01-11
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

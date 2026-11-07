@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number
+
+Enterprise name Vindhya Tours & Travels
+
+Major activity Services
+
+City Visakhapatnam
+
+State Andhra Pradesh
+
+Date of registration 2024-03-24
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

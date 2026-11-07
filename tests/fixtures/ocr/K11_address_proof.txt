@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 2710511786
+
+Billed to Trinity Bake House Pvt Ltd
+
+Supply address Shop/Unit 188, Industrial Area Phase 2, Ludhi
+
+ana, Punjab - 541498
+
+Bill date 2025-10-31
+
+Units consumed 981
+
+Amount due (INR) 2,768
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 9485717625
+
+Billed to Vindhya Tours & Travels
+
+Supply address Shop/Unit 1, Tech Park Road, Visakhapatnam, A
+
+ndhra Pradesh - 118383
+
+Bill date 2026-06-26
+
+Units consumed 2203
+
+Amount due (INR) 27,071
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

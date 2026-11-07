@@ -1,0 +1,16 @@
+Specimen: GST Registration Certificate
+Format for hackathon OCR testing only
+GSTIN T9EOGXH4115Y1ZL
+Legal name Joseph Shah (Prop. Harmony Dental! Care)
+Trade name Harmony Dental Care
+
+Constitution Proprietorship
+
+Address of Principal Shop/Unit 198, Station Road, Kolkata, West Be
+place of business ngal - 347550
+
+Date of liability 2022-04-17
+
+Type of registration Regular
+
+Accel YTL Hackathon - Track A test data Fictional business, person and identifiers,

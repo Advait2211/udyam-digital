@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 6982457282
+
+Billed to Star Electronics
+
+Supply address Shop/Unit 216, Nehru Nagar, Visakhapatnam, An
+
+dhra Pradesh - 762071
+
+Bill date 2026-07-06
+
+Units consumed 492
+
+Amount due (INR) 25,639
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

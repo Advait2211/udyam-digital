@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 3438517928
+
+Billed to Ganesh Woodcraft
+
+Supply address Shop/Unit 80, Civil Lines, Nagpur, Maharashtr
+
+a - 411231
+
+Bill date 2026-05-30
+
+Units consumed 231
+
+Amount due (INR) 33,615
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

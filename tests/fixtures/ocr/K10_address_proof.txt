@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 6910330901
+
+Billed to Kaveri Stays LLP
+
+Supply address Shop/Unit 21, Sector 14, Mumbai, Maharashtra
+
+- 570043
+
+Bill date 2026-06-18
+
+Units consumed 675
+
+Amount due (INR) 23,713
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

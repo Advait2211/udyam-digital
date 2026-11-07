@@ -1,0 +1,19 @@
+Specimen: GST Registration Certificate
+
+Format for hackathon OCR testing only
+
+GSTIN 24X0RXG9365M1Z3
+
+Legal name Joseph Rao (Prop. Green Leaf Legal Associates)
+Trade name Green Leaf Legal Associates
+
+Constitution Proprietorship
+
+Address of principal Shop/Unit 238, Ring Road, Vadodara, Gujarat -
+
+place of business 348176
+
+Date of liability 2018-12-01
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

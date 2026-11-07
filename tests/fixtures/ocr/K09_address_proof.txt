@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 9375012581
+
+Billed to Kaveri Insurance Advisors
+
+Supply address Shop/Unit 217, Civil Lines, Visakhapatnam, An
+
+dhra Pradesh - 405337
+
+Bill date 2026-07-10
+
+Units consumed 2026
+
+Amount due (INR) 28,569
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

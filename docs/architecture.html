@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Udyam Digital — architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root { --ink:#1f1a17; --muted:#7c726b; --line:#e7d9cc; --brand:#e5232b; --brandsoft:#ffe9e5; --mint:#0e9f6e; --mintsoft:#e2f6ec; --sky:#2563eb; --skysoft:#e8efff; --saffron:#c98500; --saffronsoft:#fff1d6; --violet:#6250d6; --violetsoft:#eeebff; }
+  @page { size: 1600px 1000px; margin: 0; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#fff; font-family:"Plus Jakarta Sans", Arial, sans-serif; color:var(--ink); }
+  .page { width:1600px; height:1000px; padding:36px 44px; position:relative; }
+  h1 { margin:0; font-size:30px; font-weight:800; letter-spacing:-0.02em; }
+  .sub { color:var(--muted); font-size:15px; margin-top:4px; font-weight:600; }
+  svg text { font-family:"Plus Jakarta Sans", Arial, sans-serif; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Udyam Digital — solution architecture</h1>
+  <div class="sub">Accel Business · digital acquisition &amp; onboarding for MSMEs · everything below runs today in the prototype; dashed boxes are production integrations</div>
+  <svg width="1512" height="860" viewBox="0 0 1512 860" style="position:absolute;left:44px;top:110px">
+    <defs>
+      <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8a7f78"/></marker>
+      <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e5232b"/></marker>
+    </defs>
+
+    <!-- Column labels -->
+    <g font-size="13" font-weight="800" fill="#7c726b" letter-spacing="1.5">
+      <text x="0" y="14">OWNER'S PHONE (BROWSER)</text>
+      <text x="520" y="14">ACCEL BACKEND · NEXT.JS ROUTE HANDLERS</text>
+      <text x="1120" y="14">AI · DATA · INTEGRATIONS</text>
+    </g>
+
+    <!-- Phone column -->
+    <rect x="0" y="28" width="440" height="560" rx="26" fill="#fff8f1" stroke="#e7d9cc" stroke-width="2"/>
+    <g font-size="15" font-weight="700">
+      <rect x="20" y="48" width="400" height="74" rx="16" fill="#fff" stroke="#e7d9cc"/>
+      <text x="40" y="78">① Advisor  <tspan fill="#7c726b" font-weight="600" font-size="13">tap · type · speak (EN / हिं / मरा)</tspan></text>
+      <text x="40" y="104" font-size="13" font-weight="600" fill="#7c726b">free-text parser + live bundle, instant on device</text>
+
+      <rect x="20" y="134" width="400" height="74" rx="16" fill="#fff" stroke="#e7d9cc"/>
+      <text x="40" y="164">② Quote &amp; checkout</text>
+      <text x="40" y="190" font-size="13" font-weight="600" fill="#7c726b">one price · add-on toggles · contract · dependencies</text>
+
+      <rect x="20" y="220" width="400" height="110" rx="16" fill="#fff" stroke="#e5232b" stroke-width="2"/>
+      <text x="40" y="250">③ Smart KYC  <tspan fill="#e5232b" font-size="12.5">on-device</tspan></text>
+      <text x="40" y="276" font-size="13" font-weight="600" fill="#7c726b">consent → blur check → auto-straighten →</text>
+      <text x="40" y="296" font-size="13" font-weight="600" fill="#7c726b">Tesseract OCR (WASM) → field extraction</text>
+      <text x="40" y="316" font-size="13" font-weight="700" fill="#e5232b">images never leave the phone</text>
+
+      <rect x="20" y="342" width="400" height="74" rx="16" fill="#fff" stroke="#e7d9cc"/>
+      <text x="40" y="372">④ Order tracker</text>
+      <text x="40" y="398" font-size="13" font-weight="600" fill="#7c726b">live stages · install slot · tickets · no calls</text>
+
+      <rect x="20" y="428" width="400" height="74" rx="16" fill="#fff" stroke="#e7d9cc"/>
+      <text x="40" y="458">⑤ WhatsApp-style chat + voice</text>
+      <text x="40" y="484" font-size="13" font-weight="600" fill="#7c726b">same advisor over a webhook contract</text>
+
+      <rect x="20" y="514" width="400" height="58" rx="16" fill="#1f1a17"/>
+      <text x="40" y="549" fill="#fff">Shared rules engine <tspan font-weight="600" fill="#ffb020" font-size="12.5">recommend · price · parse</tspan></text>
+    </g>
+
+    <!-- Partner console under phone -->
+    <rect x="0" y="612" width="440" height="120" rx="22" fill="#eeebff" stroke="#c9c1ff" stroke-width="2"/>
+    <g font-size="15" font-weight="700"><text x="24" y="644" fill="#3f32a8">⑥ Partner &amp; sales console</text>
+    <text x="24" y="670" font-size="13" font-weight="600" fill="#5b4fb8">hand-offs from any screen · call list ranked by</text>
+    <text x="24" y="690" font-size="13" font-weight="600" fill="#5b4fb8">propensity (AUC 0.71) · funnel insights · audit log</text>
+    <text x="24" y="714" font-size="13" font-weight="600" fill="#5b4fb8">assign to inside sales / channel partner / field</text></g>
+
+    <!-- Backend column -->
+    <rect x="520" y="28" width="520" height="704" rx="26" fill="#fff" stroke="#e7d9cc" stroke-width="2"/>
+    <g font-size="14.5" font-weight="700">
+      <g transform="translate(540,48)">
+        <rect width="480" height="64" rx="14" fill="#fff8f1" stroke="#e7d9cc"/>
+        <text x="18" y="27">/api/advisor/parse · /explain</text>
+        <text x="18" y="49" font-size="12.5" font-weight="600" fill="#7c726b">rules first; AI refines &amp; explains (3.5 s timeout → template)</text>
+      </g>
+      <g transform="translate(540,124)">
+        <rect width="480" height="64" rx="14" fill="#fff8f1" stroke="#e7d9cc"/>
+        <text x="18" y="27">/api/gstin/:id · /api/udyam/:no  <tspan fill="#2563eb" font-size="12">mock registry APIs</tspan></text>
+        <text x="18" y="49" font-size="12.5" font-weight="600" fill="#7c726b">format + check digit + status; returns only needed fields</text>
+      </g>
+      <g transform="translate(540,200)">
+        <rect width="480" height="86" rx="14" fill="#ffe9e5" stroke="#f5b8ae"/>
+        <text x="18" y="27">/api/kyc/verify  <tspan fill="#e5232b" font-size="12">server re-validates</tspan></text>
+        <text x="18" y="49" font-size="12.5" font-weight="600" fill="#7c726b">GSTIN checksum + OCR-confusion repair · registry match ·</text>
+        <text x="18" y="68" font-size="12.5" font-weight="600" fill="#7c726b">names · address · bill ≤ 90 days · signatory · verdict</text>
+      </g>
+      <g transform="translate(540,298)">
+        <rect width="232" height="64" rx="14" fill="#fff8f1" stroke="#e7d9cc"/>
+        <text x="16" y="27">/api/consent</text>
+        <text x="16" y="49" font-size="12.5" font-weight="600" fill="#7c726b">per purpose · versioned</text>
+      </g>
+      <g transform="translate(788,298)">
+        <rect width="232" height="64" rx="14" fill="#fff8f1" stroke="#e7d9cc"/>
+        <text x="16" y="27">/api/orders</text>
+        <text x="16" y="49" font-size="12.5" font-weight="600" fill="#7c726b">re-prices, re-checks rules</text>
+      </g>
+      <g transform="translate(540,374)">
+        <rect width="232" height="64" rx="14" fill="#fff8f1" stroke="#e7d9cc"/>
+        <text x="16" y="27">/api/orders/:id</text>
+        <text x="16" y="49" font-size="12.5" font-weight="600" fill="#7c726b">status from time · slots</text>
+      </g>
+      <g transform="translate(788,374)">
+        <rect width="232" height="64" rx="14" fill="#fff8f1" stroke="#e7d9cc"/>
+        <text x="16" y="27">/api/leads</text>
+        <text x="16" y="49" font-size="12.5" font-weight="600" fill="#7c726b">hand-off + propensity</text>
+      </g>
+      <g transform="translate(540,450)">
+        <rect width="480" height="64" rx="14" fill="#e2f6ec" stroke="#a9e2c8"/>
+        <text x="18" y="27">/api/whatsapp/webhook</text>
+        <text x="18" y="49" font-size="12.5" font-weight="600" fill="#2f7d5f">{from, text | optionId} → text / buttons / list replies</text>
+      </g>
+      <g transform="translate(540,526)">
+        <rect width="480" height="64" rx="14" fill="#fff8f1" stroke="#e7d9cc"/>
+        <text x="18" y="27">/api/voice/stt · /tts · /api/kyc/extract</text>
+        <text x="18" y="49" font-size="12.5" font-weight="600" fill="#7c726b">optional AI paths; 501 → browser speech / on-device OCR</text>
+      </g>
+      <g transform="translate(540,602)">
+        <rect width="480" height="110" rx="14" fill="#1f1a17"/>
+        <text x="18" y="30" fill="#fff">AI router</text>
+        <text x="18" y="54" font-size="12.5" font-weight="600" fill="#d9cfc7">en → NVIDIA NIM (chat) · hi/mr → Sarvam</text>
+        <text x="18" y="74" font-size="12.5" font-weight="600" fill="#d9cfc7">AI never picks products or prices — it only explains</text>
+        <text x="18" y="94" font-size="12.5" font-weight="700" fill="#ffb020">every call: hard timeout + deterministic fallback</text>
+      </g>
+    </g>
+
+    <!-- Right column -->
+    <g font-size="14.5" font-weight="700">
+      <g transform="translate(1120,28)">
+        <rect width="392" height="96" rx="18" fill="#e8efff" stroke="#bcd0ff" stroke-width="2"/>
+        <text x="18" y="30" fill="#1d4ed8">NVIDIA NIM</text>
+        <text x="18" y="54" font-size="12.5" font-weight="600" fill="#3b5fb8">chat: deepseek-v4.1-flash / nemotron-3.5</text>
+        <text x="18" y="74" font-size="12.5" font-weight="600" fill="#3b5fb8">vision: nemotron-3.5-super-vl (doc reading)</text>
+      </g>
+      <g transform="translate(1120,136)">
+        <rect width="392" height="76" rx="18" fill="#fff1d6" stroke="#f3d38f" stroke-width="2"/>
+        <text x="18" y="30" fill="#9a6200">Sarvam</text>
+        <text x="18" y="54" font-size="12.5" font-weight="600" fill="#9a6200">Hindi/Marathi replies · Saarika STT · Bulbul TTS</text>
+      </g>
+      <g transform="translate(1120,236)">
+        <rect width="392" height="150" rx="18" fill="#fff" stroke="#e7d9cc" stroke-width="2"/>
+        <text x="18" y="30">SQLite (node:sqlite)</text>
+        <text x="18" y="56" font-size="12.5" font-weight="600" fill="#7c726b">orders · consents · leads · tickets · chat sessions</text>
+        <text x="18" y="78" font-size="12.5" font-weight="600" fill="#7c726b">events = audit trail with masked identifiers</text>
+        <text x="18" y="108" font-size="12.5" font-weight="700" fill="#e5232b">no document images stored anywhere</text>
+        <text x="18" y="130" font-size="12.5" font-weight="600" fill="#7c726b">no PII sent to AI providers (GSTIN stripped)</text>
+      </g>
+      <g transform="translate(1120,398)">
+        <rect width="392" height="120" rx="18" fill="#fff" stroke="#e7d9cc" stroke-width="2"/>
+        <text x="18" y="30">Data pack → JSON (build step)</text>
+        <text x="18" y="56" font-size="12.5" font-weight="600" fill="#7c726b">catalogue (25) · GSTIN registry (3,534)</text>
+        <text x="18" y="78" font-size="12.5" font-weight="600" fill="#7c726b">Udyam registry (2,723) · cities → tier</text>
+        <text x="18" y="100" font-size="12.5" font-weight="600" fill="#7c726b">analyze.py → insights · propensity · call list</text>
+      </g>
+      <g transform="translate(1120,540)" stroke-dasharray="7 6">
+        <rect width="392" height="192" rx="18" fill="#fafafa" stroke="#b9aea6" stroke-width="2"/>
+        <text x="18" y="30" fill="#7c726b" stroke="none">Production integrations (swap mocks)</text>
+        <g font-size="12.5" font-weight="600" fill="#7c726b" stroke="none">
+          <text x="18" y="58">GSTN / Udyam APIs (via GSP)  ·  DigiLocker</text>
+          <text x="18" y="80">Aadhaar e-Sign (ESP)  ·  UPI AutoPay mandate</text>
+          <text x="18" y="102">WhatsApp Cloud API (thin adapter)</text>
+          <text x="18" y="124">OSS/BSS provisioning → tracker events</text>
+          <text x="18" y="146">Fibre feasibility API → AirFiber fallback</text>
+          <text x="18" y="168">CRM / partner app for hand-offs</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Arrows -->
+    <g stroke="#8a7f78" stroke-width="2" fill="none">
+      <path d="M440 90 H530" marker-end="url(#a)"/>
+      <path d="M440 170 H530" marker-end="url(#a)"/>
+      <path d="M440 272 H530" marker-end="url(#ar)" stroke="#e5232b"/>
+      <path d="M440 380 H530" marker-end="url(#a)"/>
+      <path d="M440 466 H530" marker-end="url(#a)"/>
+      <path d="M440 672 H500 V420 H530" marker-end="url(#a)"/>
+      <path d="M1040 640 H1100 V76 H1112" marker-end="url(#a)"/>
+      <path d="M1100 174 H1112" marker-end="url(#a)"/>
+      <path d="M1040 340 H1112" marker-end="url(#a)"/>
+      <path d="M1040 156 H1080 V458 H1112" marker-end="url(#a)"/>
+    </g>
+    <g font-size="11.5" font-weight="700" fill="#e5232b">
+      <text x="446" y="252">fields +</text><text x="446" y="266">quality only</text>
+    </g>
+    <g font-size="11.5" font-weight="700" fill="#7c726b">
+      <text x="446" y="80">profile</text>
+      <text x="446" y="160">lines</text>
+      <text x="446" y="370">poll 5 s</text>
+      <text x="1046" y="356">masked</text>
+    </g>
+
+    <!-- Footer legend -->
+    <g transform="translate(0,770)" font-size="13" font-weight="600" fill="#4b433e">
+      <rect width="1512" height="72" rx="18" fill="#fff8f1" stroke="#e7d9cc"/>
+      <text x="22" y="30" font-weight="800" fill="#1f1a17">Why it never hangs</text>
+      <text x="22" y="54">Bundle, prices and parsing run instantly in the browser · pages are pre-rendered static shells · AI text streams token by token · OCR worker is self-hosted and warmed up on the consent screen</text>
+    </g>
+  </svg>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+Specimen: GST Registration Certificate
+Format for hackathon OCR testing only
+
+GSTIN 32TZAXB5481U1Z1
+
+Legal name Balaji Realty LLP
+
+Trade name Balaji Realty LLP
+
+Constitution Limited Liability Partnership
+Address of principal Shop/Unit 38, Civil Lines, Kochi, Kerala - 75
+
+place of business 2083
+
+Date of liability 2020-07-26
+
+Type of registration Regular
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

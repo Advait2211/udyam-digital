@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-AP-00-9751562
+
+Enterprise name Kaveri Insurance Advisors
+
+Major activity Services
+
+City Visakhapatnam
+
+State Andhra Pradesh
+
+Date of registration 2023-07-04
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

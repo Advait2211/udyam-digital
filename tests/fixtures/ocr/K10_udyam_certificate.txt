@@ -1,0 +1,15 @@
+Specimen: Udyam Registration Certificate
+Format for hackathon OCR testing only
+
+Udyam reg. number UDYAM-MH-00- 7183141
+
+Enterprise name Kaveri Stays LLP
+
+Major activity Services
+
+City Mumbai
+
+State Maharashtra
+
+Date of registration 2024-01-09
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.

@@ -1,0 +1,18 @@
+Specimen: Electricity Bill
+
+Fictional utility - address proof for OCR testing
+
+Consumer no. 4294969054
+
+Billed to Balaji Realty LLP
+
+Supply address Shop/Unit 38, Civil Lines, Kochi, Kerala - 75
+
+2083
+
+Bill date 2026-06-11
+
+Units consumed 996
+
+Amount due (INR) 22,425
+Accel YTL Hackathon - Track A test.data. Fictional business, person and identifiers.
